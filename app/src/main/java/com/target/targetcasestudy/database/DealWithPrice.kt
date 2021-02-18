@@ -7,9 +7,9 @@ import androidx.room.Relation
 import com.target.targetcasestudy.data.DealDetailItem
 import com.target.targetcasestudy.data.DealItem
 
-data class ProductWithPrice(
+data class DealWithPrice(
     @Embedded
-    val product: Product,
+    val deal: Deal,
     @Relation(
         parentColumn = "regularPriceId",
         entityColumn = "priceId"
@@ -22,21 +22,21 @@ data class ProductWithPrice(
     val salePrice: Price?
 )
 
-fun ProductWithPrice.toDealItem(): DealItem {
+fun DealWithPrice.toDealItem(): DealItem {
     return DealItem(
-        id = product.productId,
-        title = product.title,
+        id = deal.dealId,
+        title = deal.title,
         price = salePrice?.displayString ?: regularPrice.displayString,
-        aisle = product.aisle,
-        imageURL = product.imageURL
+        aisle = deal.aisle,
+        imageURL = deal.imageURL
     )
 }
 
-fun ProductWithPrice.toDealDetailItem(): DealDetailItem {
+fun DealWithPrice.toDealDetailItem(): DealDetailItem {
     return DealDetailItem(
-        id = product.productId,
-        title = product.title,
-        description = product.description,
+        id = deal.dealId,
+        title = deal.title,
+        description = deal.description,
         regularPrice = SpannableString(regularPrice.displayString).apply {
             salePrice?.let {
                 setSpan(
@@ -48,7 +48,7 @@ fun ProductWithPrice.toDealDetailItem(): DealDetailItem {
             }
         },
         salePrice = salePrice?.displayString ?: "",
-        aisle = product.aisle,
-        imageURL = product.imageURL
+        aisle = deal.aisle,
+        imageURL = deal.imageURL
     )
 }

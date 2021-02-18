@@ -36,7 +36,7 @@ class DealItemFragment : Fragment() {
         val retryBtn = view.findViewById<Button>(R.id.retry_btn)
         val dataContainer = view.findViewById<ConstraintLayout>(R.id.data_container)
         val regularPrice = view.findViewById<TextView>(R.id.regular_price)
-        val productTitle = view.findViewById<TextView>(R.id.product_title)
+        val title = view.findViewById<TextView>(R.id.title)
         val salePrice = view.findViewById<TextView>(R.id.sale_price)
         val description = view.findViewById<TextView>(R.id.description)
         val imageView = view.findViewById<ImageView>(R.id.image)
@@ -53,7 +53,7 @@ class DealItemFragment : Fragment() {
                     retryBtn.visibility = View.GONE
                     dataContainer.visibility = View.VISIBLE
                     val dealItem = it.data
-                    productTitle.text = dealItem.title
+                    title.text = dealItem.title
                     regularPrice.text = dealItem.regularPrice
                     salePrice.text = dealItem.salePrice
                     description.text = dealItem.description

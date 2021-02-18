@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 /**
  * Created by Keshav Aggarwal 15/2/2021
  *
- * Response model to parse Product
+ * Response model to parse Deals
  */
-data class ProductResponseModel(
+data class DealResponseModel(
     @JsonProperty("id")
     val id: Long,
     @JsonProperty("title")

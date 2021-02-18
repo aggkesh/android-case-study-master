@@ -33,10 +33,12 @@ class DealItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val title: TextView = itemView.findViewById(R.id.deal_list_item_title)
     private val price: TextView = itemView.findViewById(R.id.deal_list_item_price)
     private val image: ImageView = itemView.findViewById(R.id.deal_list_item_image_view)
+    private val aisle: TextView = itemView.findViewById(R.id.aisle)
 
     fun bind(item: DealItem) {
         title.text = item.title
         price.text = item.price
+        aisle.text = item.aisle
         Picasso.get().load(item.imageURL).into(image)
     }
 

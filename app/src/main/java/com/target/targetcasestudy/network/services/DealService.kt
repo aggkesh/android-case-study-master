@@ -1,7 +1,7 @@
 package com.target.targetcasestudy.network.services
 
 import com.target.targetcasestudy.network.model.DealsResponseModel
-import com.target.targetcasestudy.network.model.ProductResponseModel
+import com.target.targetcasestudy.network.model.DealResponseModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -21,5 +21,5 @@ interface DealService {
      * fetch deal with given deal id
      */
     @GET("deals/{id}")
-    suspend fun fetchDeal(@Path("id") dealId: String) : ProductResponseModel
+    suspend fun fetchDeal(@Path("id") dealId: String) : DealResponseModel
 }

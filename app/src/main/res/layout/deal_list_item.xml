@@ -1,5 +1,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/deal_list_item"
     android:layout_width="match_parent"
     android:layout_height="@dimen/deal_list_item_height"
@@ -28,9 +29,9 @@
             android:id="@+id/deal_list_item_title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="2"
-            android:ellipsize="end"
             android:textSize="@dimen/default_text_size"
             app:layout_constraintHeight_percent="0.6"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -48,11 +49,38 @@
             android:id="@+id/deal_list_item_price"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:ellipsize="end"
             android:gravity="center_vertical"
             android:textSize="@dimen/text_size"
             app:layout_constraintHeight_percent="0.4"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_divider" />
+            app:layout_constraintTop_toBottomOf="@id/title_divider"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="5dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="@string/aisle_prefix"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintRight_toLeftOf="@id/aisle"
+            app:layout_constraintTop_toBottomOf="@id/title_divider"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <TextView
+            android:id="@+id/aisle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circular_background"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_divider"
+            tools:text="GES" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

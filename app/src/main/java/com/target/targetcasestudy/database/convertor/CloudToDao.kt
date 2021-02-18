@@ -1,27 +1,27 @@
 package com.target.targetcasestudy.database.convertor
 
 import com.target.targetcasestudy.database.Price
-import com.target.targetcasestudy.database.Product
+import com.target.targetcasestudy.database.Deal
 import com.target.targetcasestudy.network.model.PriceResponseModel
-import com.target.targetcasestudy.network.model.ProductResponseModel
+import com.target.targetcasestudy.network.model.DealResponseModel
 
 object CloudToDao {
 
-    fun convertToProductAndPriceDao(productResponseModel: ProductResponseModel): Triple<Product, Price, Price?> {
+    fun convertToDealAndPriceDao(dealResponseModel: DealResponseModel): Triple<Deal, Price, Price?> {
         return Triple(
-            productResponseModelToProduct(productResponseModel),
-            priceResponseModelToPrice(productResponseModel.regularPrice),
-            productResponseModel.salePrice?.let { priceResponseModelToPrice(productResponseModel.salePrice) }
+            dealResponseModelToDeal(dealResponseModel),
+            priceResponseModelToPrice(dealResponseModel.regularPrice),
+            dealResponseModel.salePrice?.let { priceResponseModelToPrice(dealResponseModel.salePrice) }
         )
     }
 
-    fun productResponseModelToProduct(productResponseModel: ProductResponseModel): Product {
-        return Product(
-            productId = productResponseModel.id,
-            title = productResponseModel.title,
-            imageURL = productResponseModel.imageURL,
-            aisle = productResponseModel.aisle,
-            description = productResponseModel.description
+    fun dealResponseModelToDeal(dealResponseModel: DealResponseModel): Deal {
+        return Deal(
+            dealId = dealResponseModel.id,
+            title = dealResponseModel.title,
+            imageURL = dealResponseModel.imageURL,
+            aisle = dealResponseModel.aisle,
+            description = dealResponseModel.description
         )
     }
 

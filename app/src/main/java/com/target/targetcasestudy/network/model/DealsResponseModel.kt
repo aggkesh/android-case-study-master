@@ -9,5 +9,5 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class DealsResponseModel(
     @JsonProperty("products")
-    val products: List<ProductResponseModel>
+    val deals: List<DealResponseModel>
 )

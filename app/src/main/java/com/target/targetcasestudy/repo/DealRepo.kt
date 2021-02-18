@@ -20,16 +20,16 @@ class DealRepo @Inject constructor(
 ) {
     private val TAG = DealRepo::class.java.name
 
-    fun loadDeals() = dealDao.getDealProductsAndPrices()
+    fun loadDeals() = dealDao.getDeals()
 
-    suspend fun loadDeal(dealId: Long): ProductWithPrice? {
+    suspend fun loadDeal(dealId: Long): DealWithPrice? {
         return fetchAndLoadDealFromAPI(dealId)
     }
 
-    private suspend fun fetchAndLoadDealFromAPI(dealId: Long): ProductWithPrice? {
+    private suspend fun fetchAndLoadDealFromAPI(dealId: Long): DealWithPrice? {
         return try {
             dealService.fetchDeal(dealId.toString()).also {
-                CloudToDao.convertToProductAndPriceDao(it).also { dao ->
+                CloudToDao.convertToDealAndPriceDao(it).also { dao ->
                     saveDeals(dao.first, dao.second, dao.third)
                 }
             }
@@ -43,19 +43,19 @@ class DealRepo @Inject constructor(
     @Throws(Exception::class)
     suspend fun fetchAndSaveDeals() {
         val dealsResponseModel = dealService.fetchDeals()
-        dealsResponseModel.products.forEach {
-            CloudToDao.convertToProductAndPriceDao(it).also { dao ->
+        dealsResponseModel.deals.forEach {
+            CloudToDao.convertToDealAndPriceDao(it).also { dao ->
                 saveDeals(dao.first, dao.second, dao.third)
             }
         }
     }
 
-    private suspend fun saveDeals(product: Product, regularPrice: Price, salePrice: Price?) =
+    private suspend fun saveDeals(deal: Deal, regularPrice: Price, salePrice: Price?) =
         withContext(Dispatchers.IO) {
-            dealDao.insertProductWithPrice(product, regularPrice, salePrice)
+            dealDao.insertDealWithPrice(deal, regularPrice, salePrice)
         }
 
     private suspend fun loadDealFromDb(dealId: Long) = withContext(Dispatchers.IO) {
-        dealDao.getDealProductAndPrice(dealId)
+        dealDao.getDeal(dealId)
     }
 }
